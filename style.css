@@ -1,0 +1,101 @@
+ :root{--bg:#88d0ff;--ground:#6aa84f}
+    *{box-sizing:border-box;font-family:Arial, Helvetica, sans-serif;margin:0;padding:0}
+    html,body{height:100%;margin:0;overflow:hidden}
+    .game-wrap{
+      position:relative;
+      width:100%;
+      height:100vh;
+      overflow:hidden;
+     
+      /* Optional: Keep gradient overlay for better visibility */
+      background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), 
+                  url('bg.jpg') center/cover no-repeat;
+    }
+    .ground{
+      position:absolute;
+      left:0;right:0;bottom:0;
+      height:80px;
+      background:linear-gradient(#5aa34a,#3f7e2a);
+      z-index:5;
+    }
+
+    .bird{
+      position:absolute;
+      left:30%;
+      top:40%;
+      width:50px;
+      height:65px;
+      background:#ff0000; /* Fallback color if image fails */
+      background:url("subham2.jpg") center/cover no-repeat;
+      z-index:10;
+      transform-origin:center;
+      transition:transform 0.06s linear;
+      border-radius:50%;
+    }
+
+    .pipe{
+      position:absolute;
+      width:80px;
+      background:#00ff00; /* Fallback color if image fails */
+      background:url("mia.jpg") center/cover no-repeat;
+      z-index:6;
+    }
+
+    .score{
+      position:fixed;
+      top:14px;
+      left:14px;
+      font-size:36px;
+      color:white;
+      text-shadow:0 2px 0 rgba(0,0,0,0.7);
+      z-index:20;
+    }
+
+    .center-msg{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      z-index:30;
+      background:rgba(255,255,255,0.9);
+      padding:18px 28px;
+      border-radius:10px;
+      text-align:center;
+    }
+
+    #gameOverBox{
+      display:none;
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(0,0,0,0.85);
+      padding:20px;
+      border-radius:12px;
+      text-align:center;
+      z-index:50;
+      color:white;
+      box-shadow:0 0 20px rgba(0,0,0,0.6);
+    }
+
+    #gameOverImage{
+      width:150px;
+      height:100px;
+      margin:10px auto;
+      display:block;
+      border-radius:10px;
+      background:#ccc; /* Fallback */
+    }
+
+    #restartBtn{
+      margin-top:10px;
+      padding:10px 20px;
+      font-size:16px;
+      background:#28a745;
+      border:none;
+      border-radius:8px;
+      color:white;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    #restartBtn:hover{ background:#23923d; }
