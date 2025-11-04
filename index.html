@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Flappy Bird — Easy Restart Version</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="game-wrap" id="game">
+    <div class="score" id="score">0</div>
+
+    <div class="center-msg" id="overlay">
+      <strong id="title">Press Enter to Start</strong>
+      <p>Use <strong>Space</strong> or <strong>↑</strong> to flap.</p>
+    </div>
+
+    <div class="bird" id="bird"></div>
+    <div class="ground" id="ground"></div>
+  </div>
+
+  <audio id="bgMusic" loop>
+    <source src="gm audio.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="gameOverBox">
+    <h2>Game Over!</h2>
+    <div id="scoreText" style="margin-top:10px; font-size:18px;">
+      Score: <span id="currentScore">0</span><br>
+      🏆 High Score: <span id="bestScore">0</span>
+    </div>
+    <img id="gameOverImage" src="gameover.jpg" alt="Game Over" onerror="this.style.display='none'">
+    <button id="restartBtn">Restart</button>
+  </div>
+
+  <audio id="gameOverSound">
+    <source src="gameover.mp3" type="audio/mpeg">
+  </audio>
+   
+   <script src="script.js"></script>
+</body>
+</html>
