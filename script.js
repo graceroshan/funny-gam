@@ -4,8 +4,8 @@ let score = 0;
 let bestScore = localStorage.getItem('bestScore') || 0;
 let birdY = 40;
 let birdVelocity = 0;
-let gravity = 0.4;
-let jumpStrength = -8;
+let gravity = 0.3; // Reduced gravity for smoother movement
+let jumpStrength = -7; // Reduced jump strength
 let pipes = [];
 let pipeSpeed = 3;
 let pipeGap = 300;
@@ -61,18 +61,18 @@ function updateBirdPosition() {
 function jump() {
   if (!gameActive) return;
   birdVelocity = jumpStrength;
-  bird.style.transform = 'rotate(-10deg)';
+  bird.style.transform = 'rotate(-8deg)'; // Very small upward tilt
 }
 
-// Update bird physics
+// Update bird physics - SMOOTHER VERSION
 function updateBird() {
   if (!gameActive) return;
   
   birdVelocity += gravity;
-  birdY += birdVelocity * 0.15;
+  birdY += birdVelocity * 0.12; // Reduced movement speed for smoother motion
   
-  // Very slow and minimal rotation
-  let rotation = Math.min(birdVelocity * 0.8, 45);
+  // Very slow and minimal rotation - SMOOTH ROTATION
+  let rotation = Math.min(birdVelocity * 0.5, 30); // Much slower rotation, max 30 degrees
   bird.style.transform = `rotate(${rotation}deg)`;
   
   // Check ground collision
@@ -160,13 +160,13 @@ function updatePipes() {
   }
 }
 
-// Check collision with pipe - FIXED VERSION
+// Check collision with pipe
 function checkCollision(pipe) {
   // Bird dimensions and position
   const birdLeft = window.innerWidth * 0.3;
-  const birdRight = birdLeft + 40; // Reduced from 50 to 40 for smaller hitbox
+  const birdRight = birdLeft + 40;
   const birdTop = (birdY / 100) * window.innerHeight;
-  const birdBottom = birdTop + 40; // Reduced from 55 to 40 for smaller hitbox
+  const birdBottom = birdTop + 40;
   
   // Top pipe collision
   const pipeTopLeft = pipe.x;
@@ -177,23 +177,17 @@ function checkCollision(pipe) {
   const gapPercentage = (pipeGap / window.innerHeight) * 100;
   const pipeBottomTop = (pipe.height / 100) * window.innerHeight + (gapPercentage / 100) * window.innerHeight;
   
-  // Debug logging (you can remove this after testing)
-  console.log('Bird:', birdLeft, birdTop, birdRight, birdBottom);
-  console.log('Pipe Top Bottom:', pipeTopBottom);
-  console.log('Pipe Bottom Top:', pipeBottomTop);
-  console.log('Pipe X:', pipe.x, pipe.x + 80);
-  
   // Check collision with top pipe
   const topPipeCollision = 
-    birdRight > pipeTopLeft + 10 && // Added buffer on left
-    birdLeft < pipeTopRight - 10 && // Added buffer on right
+    birdRight > pipeTopLeft + 10 &&
+    birdLeft < pipeTopRight - 10 &&
     birdBottom > 0 &&
     birdTop < pipeTopBottom;
   
   // Check collision with bottom pipe
   const bottomPipeCollision = 
-    birdRight > pipeTopLeft + 10 && // Added buffer on left
-    birdLeft < pipeTopRight - 10 && // Added buffer on right
+    birdRight > pipeTopLeft + 10 &&
+    birdLeft < pipeTopRight - 10 &&
     birdTop < window.innerHeight &&
     birdBottom > pipeBottomTop;
   
